@@ -16,6 +16,6 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>Auction_MVC</servlet-name>
-  	<url-pattern>/auctionAppWEB/*</url-pattern>
+  	<url-pattern>/auctionator*</url-pattern>
   </servlet-mapping>
 </web-app>

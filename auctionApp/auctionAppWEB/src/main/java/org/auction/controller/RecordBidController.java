@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  */
 @Controller
-@RequestMapping(value="/recordbid")
 public class RecordBidController extends AbstractAuctionController {
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/recordbid", method=RequestMethod.GET)
 	public void handleRequest() {
 		super.handleRequest();
 	}
