@@ -20,6 +20,12 @@
   		<version>0.0.1-SNAPSHOT</version>
   		<type>war</type>
   	</dependency>
+  	<dependency>
+  		<groupId>kirankumar</groupId>
+  		<artifactId>auctionAppServices</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  		<type>jar</type>
+  	</dependency>
   </dependencies>
   
   <build>
