@@ -28,4 +28,12 @@ public abstract class AbstractAuctionController {
 		
 	}
 
+	public void setAbstractAuctionService(AbstractAuctionService abstractAuctionService) {
+		this.abstractAuctionService = abstractAuctionService;
+	}
+
+	public void setAbstractValidator(AbstractValidator abstractValidator) {
+		this.abstractValidator = abstractValidator;
+	}
+
 }
