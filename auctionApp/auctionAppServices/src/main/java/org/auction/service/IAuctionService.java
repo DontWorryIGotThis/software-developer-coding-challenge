@@ -7,9 +7,9 @@ package org.auction.service;
  * @author Kirankumar
  *
  */
-public interface IAuctionService {
+public interface IAuctionService<P, Q> {
 	
-	public Object makeCall ();
+	public Q makeCall (P p);
 		
 
 }

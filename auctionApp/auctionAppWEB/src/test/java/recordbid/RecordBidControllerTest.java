@@ -1,6 +1,8 @@
 package recordbid;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
@@ -35,8 +37,9 @@ public class RecordBidControllerTest {
 	
 	@Test
 	public void recordBidTest() throws Exception {
-		this.mockMvc.perform(get("/recordbid"))
-			.andExpect(status().isOk());
+		this.mockMvc.perform(post("/recordbid"))
+			.andExpect(status().isOk())
+			.andExpect(forwardedUrl("/WEB-INF/jsp/bidsuccess.jsp"));
 	}
 	
 
