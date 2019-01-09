@@ -1,7 +1,6 @@
 package org.auction.controller;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.auction.controller.model.RecordBidModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,16 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  */
 @Controller
-@RequestMapping(value="/recordbid")
-public class RecordBidController extends AbstractAuctionController {
+public class RecordBidController extends AbstractAuctionController<RecordBidModel> {
 	
-	private static final String viewId = "/WEB-INF/jsp/bidsuccess";
-	private static Log logger = LogFactory.getLog(RecordBidController.class);
+	private static final String viewName = "bidsuccess";
+	private static Logger logger = Logger.getLogger(RecordBidController.class);
 	
-	@RequestMapping(method=RequestMethod.POST)
-	public String handleRequest(@RequestBody RecordBidModel recordBidModel) {
-		super.handleRequest();
-		return viewId;
+	@RequestMapping(value="/recordbid", method=RequestMethod.POST)
+	public String handleIncomingRequest(/*@RequestBody RecordBidModel recordBidModel*/) {
+		//super.handleRequest(recordBidModel);
+		return viewName;
 	}
 
 	protected void buildServiceRequest() {
@@ -35,7 +33,7 @@ public class RecordBidController extends AbstractAuctionController {
 		
 	}
 
-	protected void buildModelResponse() {
+	protected void buildModelResponse(RecordBidModel recordBidModel) {
 		logger.info("Extracted Model:");
 		
 	}

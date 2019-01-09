@@ -1,9 +1,11 @@
-package recordbid;
+/**
+ * 
+ */
+package auction.test.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,24 +25,30 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration("test-config.xml")
-public class RecordBidControllerTest {
+public class RegisterUserControllerTest {
+	
+	private String VIEW_PATH="/WEB-INF/views";
 	
 	@Autowired
-	private WebApplicationContext webAppContext;
+	WebApplicationContext webAppContext;
 	
-	private MockMvc mockMvc;
+	MockMvc mockMVC;
 	
 	@Before
 	public void setup() {
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
+		this.mockMVC = MockMvcBuilders.webAppContextSetup(webAppContext).build();
 	}
 	
 	@Test
-	public void recordBidTest() throws Exception {
-		this.mockMvc.perform(post("/recordbid"))
-			.andExpect(status().isOk())
-			.andExpect(forwardedUrl("/WEB-INF/jsp/bidsuccess.jsp"));
+	public void registerURITest() throws Exception {
+		mockMVC.perform(get("/register"))
+		.andExpect(forwardedUrl(VIEW_PATH+"/registeruser.jsp"));
 	}
 	
+	@Test
+	public void registeruserURITest() throws Exception{
+		mockMVC.perform(post("/registeruser"))
+		.andExpect(forwardedUrl(VIEW_PATH+"/registersuccess.jsp"));
+	}
 
 }

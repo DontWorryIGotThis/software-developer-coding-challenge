@@ -1,7 +1,6 @@
 package org.auction.controller;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.auction.controller.validator.AbstractValidator;
 import org.auction.service.IAuctionService;
 
@@ -9,31 +8,30 @@ import org.auction.service.IAuctionService;
  * @author Kirankumar
  *
  */
-public abstract class AbstractAuctionController {
+public abstract class AbstractAuctionController<P> {
 	
-	private static Log logger = LogFactory.getLog(AbstractAuctionController.class);
+	private static Logger logger = Logger.getLogger(RecordBidController.class);
+	protected static final String FAILURE_FORWARD ="failure";
 	
 	IAuctionService auctionService;
 	AbstractValidator abstractValidator;
 	
-	protected void handleRequest() {
+	protected void handleRequest(P p) {
 		
 		try {
-			abstractValidator.validate();
+			abstractValidator.validate(p);
 			buildServiceRequest();
 			callService();
-			buildModelResponse();
+			buildModelResponse(p);
 		}catch (Exception e) {
 			logger.warn("Error while handling request");
 		}
-		
-		
 	}
 	protected abstract void buildServiceRequest();
 	
 	protected abstract void callService();
 	
-	protected abstract void buildModelResponse();
+	protected abstract void buildModelResponse(P p);
 
 
 	public void setAuctionService(IAuctionService auctionService) {
