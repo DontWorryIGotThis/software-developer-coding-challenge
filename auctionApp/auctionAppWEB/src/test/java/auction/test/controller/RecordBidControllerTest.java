@@ -22,7 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration("test-config.xml")
+@ContextConfiguration("classpath:test-config.xml")
 public class RecordBidControllerTest {
 	
 	@Autowired

@@ -24,7 +24,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(locations="classpath:test-config.xml")
+@ContextConfiguration(locations="classpath:controller-test-config.xml")
 public class RegisterUserControllerTest {
 	
 	private String VIEW_PATH="/WEB-INF/views";

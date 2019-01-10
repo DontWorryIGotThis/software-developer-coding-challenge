@@ -2,6 +2,9 @@ package org.auction.controller;
 
 import org.apache.log4j.Logger;
 import org.auction.controller.model.RecordBidModel;
+import org.auction.service.RecordBidService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  */
 @Controller
-public class RecordBidController extends AbstractAuctionController<RecordBidModel> {
+public class RecordBidController /*extends AbstractAuctionController<RecordBidModel>*/ {
 	
 	private static final String viewName = "bidsuccess";
 	private static Logger logger = Logger.getLogger(RecordBidController.class);
@@ -35,7 +38,11 @@ public class RecordBidController extends AbstractAuctionController<RecordBidMode
 
 	protected void buildModelResponse(RecordBidModel recordBidModel) {
 		logger.info("Extracted Model:");
-		
 	}
+	
+/*	@Qualifier("recordBidService")
+	public void setRecordBidService(RecordBidService recordBidService) {
+		this.auctionService = recordBidService;
+	}*/
 
 }
