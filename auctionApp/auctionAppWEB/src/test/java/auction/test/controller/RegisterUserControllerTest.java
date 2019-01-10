@@ -24,7 +24,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration("test-config.xml")
+@ContextConfiguration(locations="classpath:test-config.xml")
 public class RegisterUserControllerTest {
 	
 	private String VIEW_PATH="/WEB-INF/views";
@@ -50,5 +50,5 @@ public class RegisterUserControllerTest {
 		mockMVC.perform(post("/registeruser"))
 		.andExpect(forwardedUrl(VIEW_PATH+"/registersuccess.jsp"));
 	}
-
+	
 }

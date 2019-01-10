@@ -5,6 +5,8 @@ public class RegisterUserModel {
 	private String name;
 	private String email;
 	private String userId;
+	
+	public  RegisterUserModel() {}
 
 	public String getName() {
 		return name;
