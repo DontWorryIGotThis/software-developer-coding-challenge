@@ -5,7 +5,7 @@ package org.auction.service.requestresponse;
 
 /**Set the VehicleID to '*' for represent all vehicles
  * 
- * @see org.auction.service.requestresponse.VehicleQuantityMatcher
+ * @see org.auction.service.requestresponse.VehicleAttributeMatcher
  * 
  * @author Kirankumar
  *

@@ -7,12 +7,16 @@ package org.auction.service.requestresponse;
  * @author Kirankumar
  *
  */
-public enum VehicleQuantityMatcher {
-	ALL("*");
+public enum VehicleAttributeMatcher {
+	ALL("*"),
+	MAKE("make"),
+	MODEL("model"),
+	MILESDRIVEN("milesdriven"),
+	WINNINGBID("winningbid");
 	
 	private String symbol;
 	
-	private VehicleQuantityMatcher(String symbol) {
+	private VehicleAttributeMatcher(String symbol) {
 		this.symbol = symbol;
 	}
 

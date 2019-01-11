@@ -15,7 +15,7 @@ import org.auction.service.requestresponse.AbstractServiceRequest;
 import org.auction.service.requestresponse.AbstractServiceResponse;
 import org.auction.service.requestresponse.VehicleDetailServiceRequest;
 import org.auction.service.requestresponse.VehicleDetailServiceResponse;
-import org.auction.service.requestresponse.VehicleQuantityMatcher;
+import org.auction.service.requestresponse.VehicleAttributeMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -51,7 +51,7 @@ public class AllVehicleController extends AbstractAuctionController<AllVehicleMo
 	@Override
 	protected AbstractServiceRequest buildServiceRequest(AllVehicleModel p) {
 		VehicleDetailServiceRequest vehicleDetailServiceRequest = new VehicleDetailServiceRequest();
-		vehicleDetailServiceRequest.setVehicleId(VehicleQuantityMatcher.ALL.getSymbol());
+		vehicleDetailServiceRequest.setVehicleId(VehicleAttributeMatcher.ALL.getSymbol());
 		return vehicleDetailServiceRequest;
 	}
 

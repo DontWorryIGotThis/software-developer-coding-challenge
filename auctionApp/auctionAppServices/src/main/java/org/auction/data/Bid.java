@@ -1,22 +1,20 @@
 /**
  * 
  */
-package org.auction.service.requestresponse;
+package org.auction.data;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.auction.data.Vehicle;
 
 /**
  * @author Kirankumar
  *
  */
-public class RecordBidServiceRequest extends AbstractServiceRequest {
-	
+public class Bid {
 	public String userId;
 	public String vehicleId;
 	public Long bidAmount;
+	public String bidId;
 	
 	public String getUserId() {
 		return userId;
@@ -36,5 +34,10 @@ public class RecordBidServiceRequest extends AbstractServiceRequest {
 	public void setBidAmount(Long bidAmount) {
 		this.bidAmount = bidAmount;
 	}
-
+	public String getBidId() {
+		return bidId;
+	}
+	public void setBidId(String bidId) {
+		this.bidId = bidId;
+	}
 }
