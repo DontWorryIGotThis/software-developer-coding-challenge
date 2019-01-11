@@ -1,14 +1,6 @@
-/**
- * 
- */
-package org.auction.service.requestresponse;
+package org.auction.data;
 
-/**
- * @author Kirankumar
- *
- */
-public class RegisterUserServiceRequest extends AbstractServiceRequest {
-	
+public class User extends AbstractData {
 	String email;
 	String name;
 	String userId;
@@ -31,6 +23,5 @@ public class RegisterUserServiceRequest extends AbstractServiceRequest {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	
 
 }

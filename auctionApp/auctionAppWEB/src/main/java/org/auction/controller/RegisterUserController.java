@@ -23,8 +23,7 @@ public class RegisterUserController extends AbstractAuctionController<RegisterUs
 	
 	@RequestMapping(value="${register.user.uri}", method=RequestMethod.POST)
 	public String handleRequest(@ModelAttribute("registerModel") RegisterUserModel registerModel, Model model) {
-		super.handleRequest(registerModel);
-		return VIEW_NAME;
+		return super.handleRequest(registerModel);
 	}
 	
 	protected RegisterUserServiceRequest buildServiceRequest(RegisterUserModel registerUserModel) {
@@ -35,8 +34,8 @@ public class RegisterUserController extends AbstractAuctionController<RegisterUs
 	}
 
 	protected void buildModelResponse(RegisterUserModel registerModel, AbstractServiceResponse serviceResponse) {
-		// TODO Auto-generated method stub
-
+		RegisterUserServiceResponse response = (RegisterUserServiceResponse) serviceResponse;
+		registerModel.setUserId(response.getUserId());
 	}
 	
 	@Autowired
