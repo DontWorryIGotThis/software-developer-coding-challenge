@@ -11,7 +11,7 @@ public class RegisterVehicleServiceRequest extends AbstractServiceRequest {
 	
 	String make;
 	String model;
-	long milesDriven;
+	Long milesDriven;
 
 	public String getMake() {
 		return make;

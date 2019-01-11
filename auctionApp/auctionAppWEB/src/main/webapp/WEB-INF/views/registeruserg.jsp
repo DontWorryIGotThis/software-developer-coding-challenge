@@ -3,9 +3,9 @@
 <html>
 	<head>
 		<title>User Registration</title>
-		<h1>Please enter the user details</h1>
 	</head>
 	<body>
+		<h1>Please enter the user details</h1>
 		<form:form action="/auctionator/app/registeruser" method="post" modelAttribute="registerModel">
 			<table>
 				<tr><td>Name:</td><td><form:input name="name" type="text" path="name"/></td></tr>

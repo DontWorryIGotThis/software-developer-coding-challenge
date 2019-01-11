@@ -36,6 +36,7 @@ public class RegisterVehicleService extends AbstractAuctionService<RegisterVehic
 		vehicleData.setMilesDriven(serviceRequest.getMilesDriven());
 		vehicleData.setModel(serviceRequest.getModel());
 		vehicleData.setVehicleId(getVehicleId());
+		vehicleData.setWinningBid(0);
 		return vehicleData;
 	}
 	

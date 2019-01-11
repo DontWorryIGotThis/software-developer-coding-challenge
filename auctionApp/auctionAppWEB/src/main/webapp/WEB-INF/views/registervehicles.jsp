@@ -5,6 +5,6 @@
 <p>What would you like to do next?</p>
 <a href="http://localhost:8080/auctionator/app/registeruserg">Register User</a><br>
 <a href="http://localhost:8080/auctionator/app/registervehicleg">Register Vehicle</a><br>
-<a href="http://localhost:8080/auctionator/app/recordbidg">Record a bid</a><br>
+<a href="http://localhost:8080/auctionator/app/allvehicleg">Record a bid</a><br>
 </body>
 </html>

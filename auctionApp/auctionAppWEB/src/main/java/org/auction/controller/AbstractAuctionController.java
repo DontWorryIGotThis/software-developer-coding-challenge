@@ -28,7 +28,7 @@ public abstract class AbstractAuctionController<P> {
 			AbstractServiceResponse serviceResponse = callService(serviceRequest);
 			buildModelResponse(p, serviceResponse);
 		}catch (Exception e) {
-			logger.warn("Error while handling request");
+			logger.warn("Error while handling request"+e.getMessage());
 			return FAILURE_FORWARD;
 		}
 		return vIEW_NAME;

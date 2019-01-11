@@ -25,7 +25,7 @@ public class RegisterUserController extends AbstractAuctionController<RegisterUs
 	private String VIEW_NAME_GET;
 	
 	@RequestMapping(value="${register.user.get.uri}", method=RequestMethod.GET)
-	public String handleRegisterLinkRequest(Model model) {
+	public String handleRequest(Model model) {
 		model.addAttribute("registerModel", new RegisterUserModel());
 		return VIEW_NAME_GET;
 	}

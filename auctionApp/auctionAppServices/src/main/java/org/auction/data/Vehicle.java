@@ -3,8 +3,9 @@ package org.auction.data;
 public class Vehicle extends AbstractData {
 	String make;
 	String model;
-	long milesDriven;
+	Long milesDriven;
 	String vehicleId;
+	Long winningBid;
 
 	public String getMake() {
 		return make;
@@ -30,4 +31,11 @@ public class Vehicle extends AbstractData {
 	public void setVehicleId(String vehicleId) {
 		this.vehicleId = vehicleId;
 	}
+	public long getWinningBid() {
+		return winningBid;
+	}
+	public void setWinningBid(long winningBid) {
+		this.winningBid = winningBid;
+	}
+	
 }
