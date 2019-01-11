@@ -8,8 +8,10 @@
    http://www.springframework.org/schema/context/spring-context-4.3.xsd">
    
    <bean id="registerUserService" class="org.auction.service.RegisterUserService" />
-   
    <bean id="registerUserDAO" class="org.auction.dao.RegisterUserDAO" />
+   
+   <bean id="registerVehicleService" class="org.auction.service.RegisterVehicleService" />
+   <bean id="registerVehicleDAO" class="org.auction.dao.RegisterVehicleDAO" />
    
    <bean id = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
 	   <property name = "driverClassName" value = "com.mysql.cj.jdbc.Driver"/>

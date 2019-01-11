@@ -18,7 +18,7 @@ public class RegisterUserDAO extends AbstractAuctionDAO<User> {
 
 	public User fireQuery(User p) {
 		configureTemplate(this.dataSource);
-		log.info("Register user to database");
+		log.info("Registering user to database");
 		jdbcTemplate.update(QUERY, p.getUserId(), p.getEmail(), p.getName());
 		log.info("User successfully registered");
 		return p;

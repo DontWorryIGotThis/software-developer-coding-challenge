@@ -15,7 +15,7 @@ public abstract class AbstractAuctionController<P> {
 	private static Logger logger = Logger.getLogger(RecordBidController.class);
 	protected static final String FAILURE_FORWARD ="failure";
 	
-	protected String VIEW_NAME;
+	protected String vIEW_NAME;
 	
 	protected IAuctionService auctionService;
 	protected AbstractValidator abstractValidator;
@@ -31,7 +31,7 @@ public abstract class AbstractAuctionController<P> {
 			logger.warn("Error while handling request");
 			return FAILURE_FORWARD;
 		}
-		return VIEW_NAME;
+		return vIEW_NAME;
 	}
 	
 	protected AbstractServiceResponse callService(AbstractServiceRequest serviceRequest) {
@@ -49,7 +49,7 @@ public abstract class AbstractAuctionController<P> {
 		this.abstractValidator = abstractValidator;
 	}
 	public void setVIEW_NAME(String vIEW_NAME) {
-		VIEW_NAME = vIEW_NAME;
+		this.vIEW_NAME = vIEW_NAME;
 	}
 
 }

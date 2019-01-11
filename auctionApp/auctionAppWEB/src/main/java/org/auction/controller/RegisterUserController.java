@@ -21,7 +21,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RegisterUserController extends AbstractAuctionController<RegisterUserModel> {
 	
-	@RequestMapping(value="${register.user.uri}", method=RequestMethod.POST)
+	@Value("${register.user.view.get}")
+	private String VIEW_NAME_GET;
+	
+	@RequestMapping(value="${register.user.get.uri}", method=RequestMethod.GET)
+	public String handleRegisterLinkRequest(Model model) {
+		model.addAttribute("registerModel", new RegisterUserModel());
+		return VIEW_NAME_GET;
+	}
+	
+	@RequestMapping(value="${register.user.post.uri}", method=RequestMethod.POST)
 	public String handleRequest(@ModelAttribute("registerModel") RegisterUserModel registerModel, Model model) {
 		return super.handleRequest(registerModel);
 	}
@@ -43,9 +52,9 @@ public class RegisterUserController extends AbstractAuctionController<RegisterUs
 		this.auctionService = registerUserService;
 	}
 	
-	@Value("${user.registration.success}")
+	@Value("${register.user.view.success}")
 	public void setVIEW_NAME(String vIEW_NAME) {
-		VIEW_NAME = vIEW_NAME;
+		super.setVIEW_NAME(vIEW_NAME);
 	}
 
 }
