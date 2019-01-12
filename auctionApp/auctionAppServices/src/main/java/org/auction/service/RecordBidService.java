@@ -7,9 +7,15 @@ import java.util.UUID;
 
 import org.auction.dao.RecordBidDAO;
 import org.auction.data.Bid;
+import org.auction.data.Vehicle;
 import org.auction.service.requestresponse.RecordBidServiceRequest;
 import org.auction.service.requestresponse.RecordBidServiceResponse;
 import org.auction.service.requestresponse.ServiceResponseScenario;
+import org.auction.service.requestresponse.VehicleAttribute;
+import org.auction.service.requestresponse.VehicleDetailServiceRequest;
+import org.auction.service.requestresponse.VehicleDetailServiceResponse;
+import org.auction.service.requestresponse.WinBidUpdateServiceRequest;
+import org.auction.service.requestresponse.WinBidUpdateServiceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -17,15 +23,31 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  */
 public class RecordBidService extends AbstractAuctionService<RecordBidServiceRequest, RecordBidServiceResponse> {
+	
+	@Autowired
+	IAuctionService<VehicleDetailServiceRequest, VehicleDetailServiceResponse> vehicleDetailService;
+	
+	@Autowired
+	IAuctionService<WinBidUpdateServiceRequest, WinBidUpdateServiceResponse> winBidUpdateService;
 
 	@Override
 	public RecordBidServiceResponse makeCall(RecordBidServiceRequest serviceRequest) {
-		Bid bid=getBid(serviceRequest);
-		bid =(Bid) auctionDAO.fireQuery(bid);
+		Bid bid = makeRecordBidCall(serviceRequest);
+		if(checkForWinningBid(serviceRequest)) {
+			updateWinningBid(serviceRequest);
+		}
 		return getServiceResponse(bid);
 	}
 	
-	public Bid getBid(RecordBidServiceRequest serviceRequest) {
+	
+	/* Methods for recording the Bid*/
+	private Bid makeRecordBidCall(RecordBidServiceRequest serviceRequest) {
+		Bid bid=getBid(serviceRequest);
+		bid =(Bid) auctionDAO.fireQuery(bid);
+		return bid;
+	}
+	
+	private Bid getBid(RecordBidServiceRequest serviceRequest) {
 		Bid bid = new Bid();
 		String bidId= UUID.randomUUID().toString().substring(0, 7);
 		bid.setBidAmount(serviceRequest.getBidAmount());
@@ -40,6 +62,46 @@ public class RecordBidService extends AbstractAuctionService<RecordBidServiceReq
 		serviceResponse.setScenario(ServiceResponseScenario.SUCCESS);
 		serviceResponse.setBidId(bid.getBidId());
 		return serviceResponse;
+	}
+	
+	/*Methods for checking winning Bid*/
+	private boolean checkForWinningBid(RecordBidServiceRequest bidRequest) {
+		long newBid = bidRequest.getBidAmount();
+		long oldBid= getOldBidAmount(bidRequest.getVehicleId());
+		return (newBid > oldBid) ? true : false;
+	}
+	
+	private long getOldBidAmount(String vehicleId) {
+		VehicleDetailServiceRequest serviceRequest = getVehicleDetailsServiceRequest(vehicleId);
+		VehicleDetailServiceResponse serviceResponse = vehicleDetailService.makeCall(serviceRequest);
+		return serviceResponse.getVehicleList().get(0).getWinningBid();
+	}
+	
+	private VehicleDetailServiceRequest getVehicleDetailsServiceRequest(String vehicleId) {
+		VehicleDetailServiceRequest vehicleRequest = new VehicleDetailServiceRequest();
+		vehicleRequest.setDesiredVehicleId(vehicleId);
+		vehicleRequest.setVehicleAttribute(VehicleAttribute.ALL);
+		return vehicleRequest;
+	}
+	
+	/*Methods for updating the winning Bid*/
+	private void updateWinningBid(RecordBidServiceRequest recordBidRequest) {
+		WinBidUpdateServiceRequest serviceRequest = getWinBidUpdateServiceRequest(recordBidRequest);
+		winBidUpdateService.makeCall(serviceRequest);
+	}
+	
+	private WinBidUpdateServiceRequest getWinBidUpdateServiceRequest(RecordBidServiceRequest recordBidRequest) {
+		WinBidUpdateServiceRequest serviceRequest = new WinBidUpdateServiceRequest();
+		Vehicle vehicle = getUpdatedVehicle(recordBidRequest);
+		serviceRequest.setVehicle(vehicle);
+		return serviceRequest;
+	}
+	
+	private Vehicle getUpdatedVehicle(RecordBidServiceRequest serviceRequest) {
+		Vehicle vehicle = new Vehicle();
+		vehicle.setVehicleId(serviceRequest.getVehicleId());
+		vehicle.setWinningBid(serviceRequest.getBidAmount());
+		return vehicle;
 	}
 	
 	@Autowired

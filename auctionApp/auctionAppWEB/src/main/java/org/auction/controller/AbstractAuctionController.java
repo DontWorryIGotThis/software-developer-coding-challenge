@@ -12,7 +12,7 @@ import org.auction.service.requestresponse.AbstractServiceResponse;
  */
 public abstract class AbstractAuctionController<P> {
 	
-	private static Logger logger = Logger.getLogger(RecordBidController.class);
+	private static Logger logger = Logger.getLogger(AbstractAuctionController.class);
 	protected static final String FAILURE_FORWARD ="failure";
 	
 	protected String vIEW_NAME;
@@ -28,7 +28,7 @@ public abstract class AbstractAuctionController<P> {
 			AbstractServiceResponse serviceResponse = callService(serviceRequest);
 			buildModelResponse(p, serviceResponse);
 		}catch (Exception e) {
-			logger.warn("Error while handling request"+e.getMessage());
+			logger.error("Error while handling request "+e.toString());
 			return FAILURE_FORWARD;
 		}
 		return vIEW_NAME;

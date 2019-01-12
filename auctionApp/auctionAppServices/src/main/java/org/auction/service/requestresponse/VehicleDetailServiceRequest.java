@@ -5,20 +5,26 @@ package org.auction.service.requestresponse;
 
 /**Set the VehicleID to '*' for represent all vehicles
  * 
- * @see org.auction.service.requestresponse.VehicleAttributeMatcher
+ * @see org.auction.service.requestresponse.VehicleAttribute
  * 
  * @author Kirankumar
  *
  */
 public class VehicleDetailServiceRequest extends AbstractServiceRequest {
 	
-	String vehicleId;
+	String desiredVehicleId;
+	VehicleAttribute vehicleAttribute;
 
-	public String getVehicleId() {
-		return vehicleId;
+	public String getDesiredVehicleId() {
+		return desiredVehicleId;
 	}
-
-	public void setVehicleId(String vehicleId) {
-		this.vehicleId = vehicleId;
+	public void setDesiredVehicleId(String vehicleId) {
+		this.desiredVehicleId = vehicleId;
+	}
+	public VehicleAttribute getVehicleAttribute() {
+		return vehicleAttribute;
+	}
+	public void setVehicleAttribute(VehicleAttribute vehicleAttribute) {
+		this.vehicleAttribute = vehicleAttribute;
 	}
 }

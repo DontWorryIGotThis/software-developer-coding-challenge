@@ -28,4 +28,30 @@
    <bean id="registerUserService" class="org.mockito.Mockito" factory-method="mock">
    	<constructor-arg value="org.auction.service.RegisterUserService"/>
    </bean>
+   <bean id="recordBidService" class="org.mockito.Mockito" factory-method="mock">
+     <constructor-arg value="org.auction.service.RecordBidService"/>
+   </bean>
+   <bean id="vehicleDetailService" class="org.mockito.Mockito" factory-method="mock">
+       <constructor-arg value="org.auction.service.VehicleDetailService"/>
+   </bean>
+   <bean id="registerVehicleService" class="org.mockito.Mockito" factory-method="mock">
+       <constructor-arg value="org.auction.service.RegisterVehicleService"/>
+   </bean>
+
+   <bean id="registUserDAO" class="org.mockito.Mockito" factory-method="mock">
+       <constructor-arg value="org.auction.dao.RegisterUserDAO"/>
+   </bean>
+   <bean id="registerVehicleDAO" class="org.mockito.Mockito" factory-method="mock">
+       <constructor-arg value="org.auction.dao.RegisterVehicleDAO"/>
+   </bean>
+   <bean id="vehicleDetailDAO" class="org.mockito.Mockito" factory-method="mock">
+       <constructor-arg value="org.auction.dao.VehicleDetailDAO"/>
+   </bean>
+   <bean id="recordBidDAO" class="org.mockito.Mockito" factory-method="mock">
+       <constructor-arg value="org.auction.dao.RecordBidDAO" />
+   </bean>
+
+   <bean id="dataSource" class="org.mockito.Mockito" factory-method="mock">
+       <constructor-arg value="javax.sql.DataSource"/>
+   </bean>
 </beans>

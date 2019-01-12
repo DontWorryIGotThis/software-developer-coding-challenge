@@ -13,7 +13,7 @@ import org.auction.service.requestresponse.AbstractServiceResponse;
  */
 public abstract class AbstractAuctionService<P extends AbstractServiceRequest, Q extends AbstractServiceResponse> implements IAuctionService<P,Q> {
 	
-	IAuctionDAO auctionDAO;
+	protected IAuctionDAO auctionDAO;
 	
 	public void setAuctionDAO(IAuctionDAO auctionDAO) {
 		this.auctionDAO = auctionDAO;

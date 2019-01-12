@@ -7,7 +7,7 @@ package org.auction.service.requestresponse;
  * @author Kirankumar
  *
  */
-public enum VehicleAttributeMatcher {
+public enum VehicleAttribute {
 	ALL("*"),
 	MAKE("make"),
 	MODEL("model"),
@@ -16,7 +16,7 @@ public enum VehicleAttributeMatcher {
 	
 	private String symbol;
 	
-	private VehicleAttributeMatcher(String symbol) {
+	private VehicleAttribute(String symbol) {
 		this.symbol = symbol;
 	}
 

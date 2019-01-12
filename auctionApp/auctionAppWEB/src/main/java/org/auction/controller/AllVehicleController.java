@@ -15,7 +15,7 @@ import org.auction.service.requestresponse.AbstractServiceRequest;
 import org.auction.service.requestresponse.AbstractServiceResponse;
 import org.auction.service.requestresponse.VehicleDetailServiceRequest;
 import org.auction.service.requestresponse.VehicleDetailServiceResponse;
-import org.auction.service.requestresponse.VehicleAttributeMatcher;
+import org.auction.service.requestresponse.VehicleAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -36,22 +36,17 @@ public class AllVehicleController extends AbstractAuctionController<AllVehicleMo
 	public String handleRequest(Model model) {
 		AllVehicleModel allVehicle = new AllVehicleModel();
 		RecordBidModel recordBidModel = new RecordBidModel();
-		try {
-			super.handleRequest(allVehicle);
-			model.addAttribute("allVehicle", allVehicle);
-			model.addAttribute("recordBidModel",recordBidModel);
-			return vIEW_NAME;
-		}catch(Exception e) {
-			log.error("Error occured while getting all vehicle details");
-			return FAILURE_FORWARD;
-		}
+		String generated_View_Name=	super.handleRequest(allVehicle);
+		model.addAttribute("allVehicle", allVehicle);
+		model.addAttribute("recordBidModel",recordBidModel);
+		return generated_View_Name;
 	}
 
 
 	@Override
 	protected AbstractServiceRequest buildServiceRequest(AllVehicleModel p) {
 		VehicleDetailServiceRequest vehicleDetailServiceRequest = new VehicleDetailServiceRequest();
-		vehicleDetailServiceRequest.setVehicleId(VehicleAttributeMatcher.ALL.getSymbol());
+		vehicleDetailServiceRequest.setVehicleAttribute(VehicleAttribute.ALL);
 		return vehicleDetailServiceRequest;
 	}
 

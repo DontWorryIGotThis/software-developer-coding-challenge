@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.auction.dao.VehicleDetailDAO;
 import org.auction.data.Vehicle;
+import org.auction.data.VehicleDetails;
 import org.auction.service.requestresponse.ServiceResponseScenario;
 import org.auction.service.requestresponse.VehicleDetailServiceRequest;
 import org.auction.service.requestresponse.VehicleDetailServiceResponse;
@@ -21,29 +22,28 @@ public class VehicleDetailService extends AbstractAuctionService<VehicleDetailSe
 
 	@Override
 	public VehicleDetailServiceResponse makeCall(VehicleDetailServiceRequest serviceRequest) {
-		List<Vehicle> vehicleList = getDesiredVehiclesIds(serviceRequest);
-		vehicleList =(List<Vehicle>) auctionDAO.fireQuery(vehicleList);
-		return getServiceResponse(vehicleList);
+		VehicleDetails vehicleDetails = getVehicleDetails(serviceRequest);
+		vehicleDetails =(VehicleDetails) auctionDAO.fireQuery(vehicleDetails);
+		return getServiceResponse(vehicleDetails);
 	}
 	
-	private List<Vehicle> getDesiredVehiclesIds(VehicleDetailServiceRequest serviceRequest){
-		Vehicle vehicle = new Vehicle();
-		vehicle.setVehicleId(serviceRequest.getVehicleId());
-		List<Vehicle> vehicleList = new ArrayList<Vehicle>();
-		vehicleList.add(vehicle);
-		return vehicleList;
+	private VehicleDetails getVehicleDetails(VehicleDetailServiceRequest serviceRequest){
+		VehicleDetails vehicleDetails = new VehicleDetails();
+		vehicleDetails.setVehicleAttribute(serviceRequest.getVehicleAttribute());
+		vehicleDetails.setDesiredVehicleID(serviceRequest.getDesiredVehicleId());
+		return vehicleDetails;
 	}
 	
-	private VehicleDetailServiceResponse getServiceResponse(List<Vehicle> vehicleList) {
+	private VehicleDetailServiceResponse getServiceResponse(VehicleDetails vehicleDetails) {
 		VehicleDetailServiceResponse serviceResponse = new VehicleDetailServiceResponse();
-		serviceResponse.setVehicleList(getExtractedVehicleDetails(vehicleList));
+		serviceResponse.setVehicleList(getExtractedVehicleDetails(vehicleDetails));
 		serviceResponse.setScenario(ServiceResponseScenario.SUCCESS);
 		return serviceResponse;
 	}
 	
-	private List<Vehicle> getExtractedVehicleDetails(List<Vehicle> vehicleList){
+	private List<Vehicle> getExtractedVehicleDetails(VehicleDetails vehicleDetails){
 		List<Vehicle> vehicleListExtract = new ArrayList<Vehicle>();
-		Iterator<Vehicle> iterator = vehicleList.iterator();
+		Iterator<Vehicle> iterator = vehicleDetails.getVehicleList().iterator();
 		Vehicle tempVehicle;
 		while(iterator.hasNext()) {
 			tempVehicle=iterator.next();

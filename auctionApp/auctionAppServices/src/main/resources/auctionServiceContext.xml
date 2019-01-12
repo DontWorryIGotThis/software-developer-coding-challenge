@@ -19,6 +19,9 @@
    <bean id="recordBidService" class="org.auction.service.RecordBidService" />
    <bean id="recordBidDAO" class="org.auction.dao.RecordBidDAO" />
    
+   <bean id="winBidUpdateService" class="org.auction.service.WinBidUpdateService" />
+   <bean id="winBidUpdateDAO" class="org.auction.dao.WinBidUpdateDAO"/>
+   
    <bean id = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
 	   <property name = "driverClassName" value = "com.mysql.cj.jdbc.Driver"/>
 	   <property name = "url" value = "jdbc:mysql://localhost:3306/auctionschema"/>

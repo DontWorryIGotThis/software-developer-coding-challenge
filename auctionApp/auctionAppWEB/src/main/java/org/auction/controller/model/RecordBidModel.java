@@ -15,7 +15,6 @@ public class RecordBidModel {
 	public String vehicleId;
 	public Long bidAmount;
 	public String bidId;
-	public List<Vehicle> vehicleList = new ArrayList<Vehicle>();
 	
 	public String getUserId() {
 		return userId;
@@ -34,12 +33,6 @@ public class RecordBidModel {
 	}
 	public void setBidAmount(Long bidAmount) {
 		this.bidAmount = bidAmount;
-	}
-	public List<Vehicle> getVehicleList() {
-		return vehicleList;
-	}
-	public void setVehicleList(List<Vehicle> vehicleList) {
-		this.vehicleList = vehicleList;
 	}
 	public String getBidId() {
 		return bidId;
