@@ -34,10 +34,10 @@ public class AllVehicleController extends AbstractAuctionController<AllVehicleMo
 	
 	@RequestMapping(value="${allvehicle.get.uri}", method=RequestMethod.GET)
 	public String handleRequest(Model model) {
-		AllVehicleModel allVehicle = new AllVehicleModel();
+		AllVehicleModel allVehicleModel = new AllVehicleModel();
 		RecordBidModel recordBidModel = new RecordBidModel();
-		String generated_View_Name=	super.handleRequest(allVehicle);
-		model.addAttribute("allVehicle", allVehicle);
+		String generated_View_Name=	super.handleRequest(allVehicleModel);
+		model.addAttribute("allVehicleModel", allVehicleModel);
 		model.addAttribute("recordBidModel",recordBidModel);
 		return generated_View_Name;
 	}

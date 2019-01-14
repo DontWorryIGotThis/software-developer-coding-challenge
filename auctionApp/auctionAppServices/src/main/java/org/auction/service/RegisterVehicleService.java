@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class RegisterVehicleService extends AbstractAuctionService<RegisterVehicleServiceRequest, RegisterVehicleServiceResponse> {
 
+	private final int UID_LENGTH = 6;
+	
 	@Override
 	public RegisterVehicleServiceResponse makeCall(RegisterVehicleServiceRequest serviceRequest) {
 		Vehicle vehicleData = getVehicleData(serviceRequest);
@@ -26,7 +28,7 @@ public class RegisterVehicleService extends AbstractAuctionService<RegisterVehic
 	}
 	
 	private String getVehicleId() {
-		String vehicleId = UUID.randomUUID().toString().substring(0, 6);
+		String vehicleId = UUID.randomUUID().toString().substring(0, UID_LENGTH);
 		return vehicleId;
 	}
 	

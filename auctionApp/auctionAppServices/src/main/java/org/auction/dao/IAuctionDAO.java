@@ -3,8 +3,6 @@
  */
 package org.auction.dao;
 
-import org.auction.data.AbstractData;
-
 /**
  * @author Kirankumar
  *

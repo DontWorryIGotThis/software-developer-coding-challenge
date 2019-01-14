@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class RegisterUserService extends AbstractAuctionService<RegisterUserServiceRequest, RegisterUserServiceResponse> {
 
+	private final int UID_LENGTH= 5;
+	
 	@Override
 	public RegisterUserServiceResponse makeCall(RegisterUserServiceRequest serviceRequest) {
 		User userData = getUserData(serviceRequest);
@@ -19,7 +21,7 @@ public class RegisterUserService extends AbstractAuctionService<RegisterUserServ
 	}
 	
 	private String generateRandomID() {
-		return UUID.randomUUID().toString().substring(0, 5);
+		return UUID.randomUUID().toString().substring(0, UID_LENGTH);
 	}
 	
 	private User getUserData(RegisterUserServiceRequest serviceRequest) {

@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class RecordBidService extends AbstractAuctionService<RecordBidServiceRequest, RecordBidServiceResponse> {
 	
+	private final int UID_LENGTH = 7;
 	@Autowired
 	IAuctionService<VehicleDetailServiceRequest, VehicleDetailServiceResponse> vehicleDetailService;
 	
@@ -49,7 +50,7 @@ public class RecordBidService extends AbstractAuctionService<RecordBidServiceReq
 	
 	private Bid getBid(RecordBidServiceRequest serviceRequest) {
 		Bid bid = new Bid();
-		String bidId= UUID.randomUUID().toString().substring(0, 7);
+		String bidId= UUID.randomUUID().toString().substring(0, UID_LENGTH);
 		bid.setBidAmount(serviceRequest.getBidAmount());
 		bid.setUserId(serviceRequest.getUserId());
 		bid.setVehicleId(serviceRequest.getVehicleId());

@@ -7,5 +7,6 @@
 <a href="http://localhost:8080/auctionator/app/registeruserg">Register User</a><br>
 <a href="http://localhost:8080/auctionator/app/registervehicleg">Register Vehicle</a><br>
 <a href="http://localhost:8080/auctionator/app/allvehicleg">RecordBid</a><br>
+<a href="http://localhost:8080/auctionator/app/bidhistoryg">Bid History of a Vehicle</a><br>
 </body>
 </html>

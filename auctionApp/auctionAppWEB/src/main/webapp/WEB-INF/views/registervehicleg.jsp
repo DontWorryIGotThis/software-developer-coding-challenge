@@ -14,5 +14,8 @@
 				<tr><td><input type="submit" /></td></tr>
 			</table>
 		</form:form>
+		<p>
+		<a href="http://localhost:8080/auctionator/app/">Back</a><br>
+		</p>		
 	</body>
 </html>

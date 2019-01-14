@@ -11,26 +11,23 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 public class VehicleDetailDAO extends AbstractAuctionDAO<VehicleDetails> {
 	
-	private static final String QUERY_OPERATION="select ";
-	private static final String QUERY_PREDICATE=" from vehicle";
-	private static final String QUERY_CLAUSE=" where vehicleid = '";
+	private static final String QUERY_1="select * from vehicle";
+	private static final String QUERY_2="select * from vehicle where vehicleid = ?";
 
 	@Override
 	public VehicleDetails fireQuery(VehicleDetails vehicleDetails) {
 		configureTemplate(dataSource);
-		String sqlQuery = getQueryStatement(vehicleDetails);
-		List<Vehicle> vehicleList = jdbcTemplate.query(sqlQuery, new BeanPropertyRowMapper(Vehicle.class));
+		List<Vehicle> vehicleList = getVehicleList(vehicleDetails);
 		vehicleDetails.setVehicleList(vehicleList);
 		return vehicleDetails;
 	}
 	
-	private String getQueryStatement(VehicleDetails vehicleDetails) {
-		String vehicleAttribute= vehicleDetails.getVehicleAttribute().getSymbol();
+	private List<Vehicle> getVehicleList(VehicleDetails vehicleDetails) {
 		String vehicleId = vehicleDetails.getDesiredVehicleID();
 		if(vehicleDetails.getDesiredVehicleID()==null) {
-			return QUERY_OPERATION+vehicleAttribute+QUERY_PREDICATE;
+			return jdbcTemplate.query(QUERY_1,new BeanPropertyRowMapper(Vehicle.class));
 		}else {
-			return QUERY_OPERATION+vehicleAttribute+QUERY_PREDICATE+QUERY_CLAUSE+vehicleId+"'";
+			return jdbcTemplate.query(QUERY_2,new Object[] {vehicleId} ,new BeanPropertyRowMapper(Vehicle.class));
 		}
 	}
 	
@@ -38,5 +35,4 @@ public class VehicleDetailDAO extends AbstractAuctionDAO<VehicleDetails> {
 	public void setDataSource(DataSource dataSource) {
 		super.setDataSource(dataSource);
 	}
-
 }

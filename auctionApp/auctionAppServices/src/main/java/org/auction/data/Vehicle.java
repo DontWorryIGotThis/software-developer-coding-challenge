@@ -1,6 +1,6 @@
 package org.auction.data;
 
-public class Vehicle extends AbstractData {
+public class Vehicle {
 	String make;
 	String model;
 	Long milesDriven;

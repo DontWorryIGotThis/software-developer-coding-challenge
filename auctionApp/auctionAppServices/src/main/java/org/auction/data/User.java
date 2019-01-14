@@ -1,6 +1,6 @@
 package org.auction.data;
 
-public class User extends AbstractData {
+public class User {
 	String email;
 	String name;
 	String userId;
