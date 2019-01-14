@@ -37,6 +37,15 @@
    <bean id="registerVehicleService" class="org.mockito.Mockito" factory-method="mock">
        <constructor-arg value="org.auction.service.RegisterVehicleService"/>
    </bean>
+   <bean id="bidHistoryService" class="org.mockito.Mockito" factory-method="mock">
+   	<constructor-arg value="org.auction.service.BidHistoryService"/>
+   </bean>
+   <bean id="userDetailService" class="org.mockito.Mockito" factory-method="mock">
+   	<constructor-arg value="org.auction.service.UserDetailService"/>
+   </bean>
+   <bean id="winBidUpdateService" class="org.mockito.Mockito" factory-method="mock">
+   	<constructor-arg value="org.auction.service.WinBidUpdateService"/>
+   </bean>
 
    <bean id="registUserDAO" class="org.mockito.Mockito" factory-method="mock">
        <constructor-arg value="org.auction.dao.RegisterUserDAO"/>
@@ -50,6 +59,16 @@
    <bean id="recordBidDAO" class="org.mockito.Mockito" factory-method="mock">
        <constructor-arg value="org.auction.dao.RecordBidDAO" />
    </bean>
+   <bean id="bidHistoryDAO" class="org.mockito.Mockito" factory-method="mock">
+   		<constructor-arg value="org.auction.dao.BidHistoryDAO"/>
+   </bean>
+   <bean id="userDetailDAO" class="org.mockito.Mockito" factory-method="mock">
+   	<constructor-arg value="org.auction.dao.UserDetailDAO"/>
+   </bean>
+   <bean id="winBidUpdateDAO" class="org.mockito.Mockito" factory-method="mock">
+   	<constructor-arg value="org.auction.dao.WinBidUpdateDAO"/>
+   </bean>
+   
 
    <bean id="dataSource" class="org.mockito.Mockito" factory-method="mock">
        <constructor-arg value="javax.sql.DataSource"/>

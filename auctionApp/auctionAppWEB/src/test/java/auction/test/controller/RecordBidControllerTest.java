@@ -22,7 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration("classpath:test-config.xml")
+@ContextConfiguration("classpath:controller-test-config.xml")
 public class RecordBidControllerTest {
 	
 	@Autowired
@@ -40,25 +40,4 @@ public class RecordBidControllerTest {
 		this.mockMvc.perform(get("/"))
 		.andExpect(forwardedUrl("/WEB-INF/views/init.jsp"));
 	}
-	
-	@Test
-	public void registerTest() throws Exception {
-		this.mockMvc.perform(get("/register"))
-		.andExpect(forwardedUrl("/WEB-INF/views/auction.registeruser.jsp"));
-	}
-
-	@Test
-	public void uriTest() throws Exception {
-		this.mockMvc.perform(post("/recordbid"))
-			.andExpect(status().isOk())
-			.andExpect(forwardedUrl("/WEB-INF/views/bidsuccess.jsp"));
-	}
-	
-	@Test
-	public void bidAmountTest() throws Exception {
-		this.mockMvc.perform(post("/org.auction.controller.test"))
-			.andExpect(status().is4xxClientError());
-	}
-	
-
 }

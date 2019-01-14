@@ -41,14 +41,19 @@ public class RegisterUserControllerTest {
 	
 	@Test
 	public void registerURITest() throws Exception {
-		mockMVC.perform(get("/register"))
-		.andExpect(forwardedUrl(VIEW_PATH+"/registeruser.jsp"));
+		mockMVC.perform(get("/registervehicleg"))
+		.andExpect(forwardedUrl(VIEW_PATH+"/registervehicleg.jsp"));
 	}
 	
+/*	Need to add tests for 
+ *  1.Contoller request building 
+ *  2.Request Validation, 
+ *  3.Service call, 
+ *  4.Response model creation
 	@Test
 	public void registeruserURITest() throws Exception{
-		mockMVC.perform(post("/registeruser"))
-		.andExpect(forwardedUrl(VIEW_PATH+"/registersuccess.jsp"));
-	}
+		mockMVC.perform(post("/registervehicle"))
+		.andExpect(forwardedUrl(VIEW_PATH+"/registervehicles.jsp"));
+	}*/
 	
 }
