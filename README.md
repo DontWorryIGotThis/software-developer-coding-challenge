@@ -35,10 +35,11 @@ Project is created with:
 ```
 mvn install
 ```
-*The artifact will be generated in the directory .../auctionApp/auctionAppPackage/target
-*The artifact will be named auctionAppPackage-0.0.1-SNAPSHOT.ear
-*Spin up the JBOSS server and hit http://localhost:8080 to access the admin console
-*Deploy the application and hit the url http://localhost:8080/auctionator/app/ to access the auction system.
+
+* The artifact will be generated in the directory .../auctionApp/auctionAppPackage/target
+* The artifact will be named auctionAppPackage-0.0.1-SNAPSHOT.ear
+* Spin up the JBOSS server and hit http://localhost:8080 to access the admin console
+* Deploy the application and hit the url http://localhost:8080/auctionator/app/ to access the auction system.
 
 
 
