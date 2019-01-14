@@ -1,11 +1,9 @@
 /**
  * 
  */
-package org.auction.dao;
+package org.auction.data;
 
 import java.util.List;
-
-import org.auction.data.User;
 
 /**
  * @author Kirankumar

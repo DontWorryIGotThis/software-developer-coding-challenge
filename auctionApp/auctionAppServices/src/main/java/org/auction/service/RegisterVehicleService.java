@@ -5,6 +5,7 @@ package org.auction.service;
 
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
 import org.auction.dao.RegisterVehicleDAO;
 import org.auction.data.Vehicle;
 import org.auction.service.requestresponse.RegisterVehicleServiceRequest;
@@ -18,12 +19,19 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class RegisterVehicleService extends AbstractAuctionService<RegisterVehicleServiceRequest, RegisterVehicleServiceResponse> {
 
+	private static final Logger log = Logger.getLogger(RegisterVehicleService.class);
+	
 	private final int UID_LENGTH = 6;
 	
 	@Override
 	public RegisterVehicleServiceResponse makeCall(RegisterVehicleServiceRequest serviceRequest) {
 		Vehicle vehicleData = getVehicleData(serviceRequest);
-		vehicleData = (Vehicle) auctionDAO.fireQuery(vehicleData);
+		try {
+			vehicleData = (Vehicle) auctionDAO.fireQuery(vehicleData);
+		}catch(Exception ex) {
+			log.error("RegisterVehicleService: error occured while calling DAO "+ex.getMessage());
+			throw ex;
+		}
 		return getServiceResponse(vehicleData);
 	}
 	

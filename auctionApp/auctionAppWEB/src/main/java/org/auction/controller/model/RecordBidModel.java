@@ -1,10 +1,5 @@
 package org.auction.controller.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.auction.data.Vehicle;
-
 /**
  * @author Kirankumar
  *

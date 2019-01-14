@@ -3,9 +3,6 @@
  */
 package org.auction.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author Kirankumar
  *

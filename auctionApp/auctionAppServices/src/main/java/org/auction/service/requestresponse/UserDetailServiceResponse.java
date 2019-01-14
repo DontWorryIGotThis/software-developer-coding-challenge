@@ -5,7 +5,6 @@ package org.auction.service.requestresponse;
 
 import java.util.List;
 
-import org.auction.dao.UserDetails;
 import org.auction.data.User;
 
 /**

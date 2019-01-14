@@ -3,6 +3,7 @@
  */
 package org.auction.service;
 
+import org.apache.log4j.Logger;
 import org.auction.dao.WinBidUpdateDAO;
 import org.auction.data.Vehicle;
 import org.auction.service.requestresponse.ServiceResponseScenario;
@@ -21,12 +22,19 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class WinBidUpdateService extends AbstractAuctionService<WinBidUpdateServiceRequest, WinBidUpdateServiceResponse> {
 
+	private static final Logger log = Logger.getLogger(WinBidUpdateService.class);
+	
 	@Override
 	public WinBidUpdateServiceResponse makeCall(WinBidUpdateServiceRequest serviceRequest) {
-		Vehicle vehicle = serviceRequest.getVehicle();
-		vehicle = (Vehicle) auctionDAO.fireQuery(vehicle);
 		WinBidUpdateServiceResponse serviceResponse = new WinBidUpdateServiceResponse();
+		Vehicle vehicle = serviceRequest.getVehicle();
+		try {
+		vehicle = (Vehicle) auctionDAO.fireQuery(vehicle);
 		serviceResponse.setScenario(ServiceResponseScenario.SUCCESS);
+		}catch(Exception ex) {
+			log.error("Service: Error occured while calling DAO \n"+ex.getMessage());
+			throw ex;
+		}
 		return serviceResponse;
 	}
 		

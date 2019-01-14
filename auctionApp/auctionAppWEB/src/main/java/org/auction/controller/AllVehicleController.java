@@ -3,7 +3,6 @@
  */
 package org.auction.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -13,9 +12,9 @@ import org.auction.data.Vehicle;
 import org.auction.service.VehicleDetailService;
 import org.auction.service.requestresponse.AbstractServiceRequest;
 import org.auction.service.requestresponse.AbstractServiceResponse;
+import org.auction.service.requestresponse.VehicleAttribute;
 import org.auction.service.requestresponse.VehicleDetailServiceRequest;
 import org.auction.service.requestresponse.VehicleDetailServiceResponse;
-import org.auction.service.requestresponse.VehicleAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

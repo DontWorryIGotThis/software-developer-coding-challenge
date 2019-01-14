@@ -3,11 +3,6 @@
  */
 package org.auction.service.requestresponse;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.auction.data.Vehicle;
-
 /**
  * @author Kirankumar
  *

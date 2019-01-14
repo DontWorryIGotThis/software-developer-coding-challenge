@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.auction.dao.VehicleDetailDAO;
 import org.auction.data.Vehicle;
 import org.auction.data.VehicleDetails;
@@ -20,10 +21,16 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class VehicleDetailService extends AbstractAuctionService<VehicleDetailServiceRequest, VehicleDetailServiceResponse> {
 
+	private static final Logger log = Logger.getLogger(VehicleDetailService.class);
 	@Override
 	public VehicleDetailServiceResponse makeCall(VehicleDetailServiceRequest serviceRequest) {
 		VehicleDetails vehicleDetails = getVehicleDetails(serviceRequest);
+		try {
 		vehicleDetails =(VehicleDetails) auctionDAO.fireQuery(vehicleDetails);
+		}catch(Exception ex) {
+			log.error("VehicleDetailService: Error occured while calling DOA\n"+ex.getMessage());
+			throw ex;
+		}
 		return getServiceResponse(vehicleDetails);
 	}
 	

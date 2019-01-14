@@ -2,6 +2,7 @@ package org.auction.service;
 
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
 import org.auction.dao.RegisterUserDAO;
 import org.auction.data.User;
 import org.auction.service.requestresponse.RegisterUserServiceRequest;
@@ -11,12 +12,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class RegisterUserService extends AbstractAuctionService<RegisterUserServiceRequest, RegisterUserServiceResponse> {
 
+	private static final Logger log = Logger.getLogger(RegisterUserService.class);
+	
 	private final int UID_LENGTH= 5;
 	
 	@Override
 	public RegisterUserServiceResponse makeCall(RegisterUserServiceRequest serviceRequest) {
 		User userData = getUserData(serviceRequest);
+		try {
 		userData = (User) auctionDAO.fireQuery(userData);
+		}catch(Exception ex) {
+			log.error("Service: error occured while calling DAO");
+			throw ex;
+		}
 		return getServiceResponse(userData);
 	}
 	

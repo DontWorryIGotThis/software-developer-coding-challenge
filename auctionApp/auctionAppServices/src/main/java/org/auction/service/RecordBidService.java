@@ -5,6 +5,7 @@ package org.auction.service;
 
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
 import org.auction.dao.RecordBidDAO;
 import org.auction.data.Bid;
 import org.auction.data.Vehicle;
@@ -23,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  */
 public class RecordBidService extends AbstractAuctionService<RecordBidServiceRequest, RecordBidServiceResponse> {
+	
+	private static Logger log = Logger.getLogger(RecordBidService.class);
 	
 	private final int UID_LENGTH = 7;
 	@Autowired
@@ -44,7 +47,12 @@ public class RecordBidService extends AbstractAuctionService<RecordBidServiceReq
 	/* Methods for recording the Bid*/
 	private Bid makeRecordBidCall(RecordBidServiceRequest serviceRequest) {
 		Bid bid=getBid(serviceRequest);
+		try {
 		bid =(Bid) auctionDAO.fireQuery(bid);
+		}catch(Exception ex) {
+			log.error("Service: Error occured while calling recordBid DAO");
+			throw ex;
+		}
 		return bid;
 	}
 	

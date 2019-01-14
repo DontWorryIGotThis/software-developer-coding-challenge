@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.auction.dao.BidHistoryDAO;
 import org.auction.data.Bid;
 import org.auction.data.BidHistory;
@@ -28,6 +29,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class BidHistoryService extends AbstractAuctionService<BidHistoryServiceRequest, BidHistoryServiceResponse> {
 
+	private static final Logger log = Logger.getLogger(BidHistoryService.class);
+	
 	@Autowired
 	IAuctionService<UserDetailServiceRequest, UserDetailServiceResponse> userDetailService;
 	
@@ -46,7 +49,12 @@ public class BidHistoryService extends AbstractAuctionService<BidHistoryServiceR
 		BidHistoryServiceResponse serviceResponse = new BidHistoryServiceResponse();
 		BidHistory bidHistory = new BidHistory();
 		bidHistory.setVehicleId(serviceRequest.getDesiredVehicleId());
-		bidHistory = (BidHistory) auctionDAO.fireQuery(bidHistory);
+		try {
+			bidHistory = (BidHistory) auctionDAO.fireQuery(bidHistory);
+		}catch(Exception ex) {
+			log.error("Service: Error occured while fetch bid history");
+			throw ex;
+		}
 		serviceResponse.setBidHistoryList(bidHistory.getBidHistoryList());
 		return serviceResponse;
 	}
